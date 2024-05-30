@@ -41,9 +41,8 @@ public class GuestbookServiceImpl implements  GuestbookService{
 
     @Override
     public GuestbookDTO read(Long gno) {
-        Optional<Guestbook> result =  repository.findById(gno);
-//        return entityToDto(result.get());
-        return result.isPresent()?entityToDto(result.get()): null;
+        Optional<Guestbook> result = repository.findById(gno);
+        return result.isPresent()?entityToDto(result.get()) : null;
     }
 
 
