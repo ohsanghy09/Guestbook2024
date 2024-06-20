@@ -57,4 +57,35 @@ public class GuestServiceTests {
 
     }//testList
 
+    @Test
+    public void testSearchList(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(25)
+                .size(10)
+                .type("tc")
+                .keyword("7")
+                .build();
+
+        PageResultDTO<GuestbookDTO, Guestbook> resultDTO = service.getList(pageRequestDTO);
+        List<GuestbookDTO> list = resultDTO.getDtoList();
+
+        System.out.println("start : " + resultDTO.getStart());
+        System.out.println("end : " + resultDTO.getEnd());
+        System.out.println("previous : " + resultDTO.isPrev()); // boolean형은 메서드가 is로 시작
+        System.out.println("next : " + resultDTO.isNext()); // boolean형은 메서드가 is로 시작
+
+
+        for (GuestbookDTO guestbookDTO : list) {
+            System.out.println(guestbookDTO);
+        } //for
+
+
+        for (Integer pageNum : resultDTO.getPageList()){
+            System.out.println(pageNum.intValue());
+        } // for2
+
+
+
+    }//testList
+
 } //main
